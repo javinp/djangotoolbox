@@ -1,6 +1,39 @@
 Changelog
 =========
 
+Version 1.8.0 (Jul 19, 2015)
+-------------
+
+* Added support for Django 1.8 in the db package (Thanks @kavdev)
+
+Version 1.7.0 (Jul 12, 2015)
+-------------
+
+* Add support for Django 1.7
+
+Version 1.6.2 (Dec 20, 2013)
+-------------
+
+* Fixed broken query in User admin
+
+Version 1.6.1 (Nov 29, 2013)
+-------------
+
+* Fixed packaging issues
+
+Version 1.6.0
+-------------
+
+Note: This is release includes support for Django versions 1.4, 1.5 and 1.6.
+You no longer need to use the separate branches for each Django version.
+
+* Added support for Django 1.6
+
+Version 1.5.0
+-------------
+
+* Added support for Django 1.5
+
 Version 1.4.0
 -------------
 
