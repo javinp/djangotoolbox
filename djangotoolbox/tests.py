@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from __future__ import with_statement
 from decimal import Decimal, InvalidOperation
 import time
@@ -95,7 +96,7 @@ class EmbeddedModel(models.Model):
 
 class IterableFieldsTest(TestCase):
     floats = [5.3, 2.6, 9.1, 1.58]
-    names = [u'Kakashi', u'Naruto', u'Sasuke', u'Sakura']
+    names = ['Kakashi', 'Naruto', 'Sasuke', 'Sakura']
     unordered_ints = [4, 2, 6, 1]
 
     def setUp(self):
@@ -145,45 +146,45 @@ class IterableFieldsTest(TestCase):
         self.assertEquals(
             dict([(entity.pk, entity.names) for entity in
                   ListModel.objects.filter(names__gt='Kakashi')]),
-            dict([(2, [u'Kakashi', u'Naruto']),
-                  (3, [u'Kakashi', u'Naruto', u'Sasuke']),
-                  (4, [u'Kakashi', u'Naruto', u'Sasuke', u'Sakura']), ]))
+            dict([(2, ['Kakashi', 'Naruto']),
+                  (3, ['Kakashi', 'Naruto', 'Sasuke']),
+                  (4, ['Kakashi', 'Naruto', 'Sasuke', 'Sakura']), ]))
 
     def test_lt(self):
         self.assertEquals(
             dict([(entity.pk, entity.names) for entity in
                   ListModel.objects.filter(names__lt='Naruto')]),
-            dict([(1, [u'Kakashi']),
-                  (2, [u'Kakashi', u'Naruto']),
-                  (3, [u'Kakashi', u'Naruto', u'Sasuke']),
-                  (4, [u'Kakashi', u'Naruto', u'Sasuke', u'Sakura']), ]))
+            dict([(1, ['Kakashi']),
+                  (2, ['Kakashi', 'Naruto']),
+                  (3, ['Kakashi', 'Naruto', 'Sasuke']),
+                  (4, ['Kakashi', 'Naruto', 'Sasuke', 'Sakura']), ]))
 
     def test_gte(self):
         self.assertEquals(
             dict([(entity.pk, entity.names) for entity in
                   ListModel.objects.filter(names__gte='Sakura')]),
-            dict([(3, [u'Kakashi', u'Naruto', u'Sasuke']),
-                  (4, [u'Kakashi', u'Naruto', u'Sasuke', u'Sakura']), ]))
+            dict([(3, ['Kakashi', 'Naruto', 'Sasuke']),
+                  (4, ['Kakashi', 'Naruto', 'Sasuke', 'Sakura']), ]))
 
     def test_lte(self):
         self.assertEquals(
             dict([(entity.pk, entity.names) for entity in
                   ListModel.objects.filter(names__lte='Kakashi')]),
-            dict([(1, [u'Kakashi']),
-                  (2, [u'Kakashi', u'Naruto']),
-                  (3, [u'Kakashi', u'Naruto', u'Sasuke']),
-                  (4, [u'Kakashi', u'Naruto', u'Sasuke', u'Sakura']), ]))
+            dict([(1, ['Kakashi']),
+                  (2, ['Kakashi', 'Naruto']),
+                  (3, ['Kakashi', 'Naruto', 'Sasuke']),
+                  (4, ['Kakashi', 'Naruto', 'Sasuke', 'Sakura']), ]))
 
     def test_equals(self):
         self.assertEquals([entity.names for entity in
                            ListModel.objects.filter(names='Sakura')],
-                          [[u'Kakashi', u'Naruto', u'Sasuke', u'Sakura']])
+                          [['Kakashi', 'Naruto', 'Sasuke', 'Sakura']])
 
         # Test with additonal pk filter (for DBs that have special pk
         # queries).
         query = ListModel.objects.filter(names='Sakura')
         self.assertEquals(query.get(pk=query[0].pk).names,
-                          [u'Kakashi', u'Naruto', u'Sasuke', u'Sakura'])
+                          ['Kakashi', 'Naruto', 'Sasuke', 'Sakura'])
 
     def test_is_null(self):
         self.assertEquals(ListModel.objects.filter(
@@ -193,8 +194,8 @@ class IterableFieldsTest(TestCase):
         self.assertEquals(
             dict([(entity.pk, entity.names) for entity in
                   ListModel.objects.all().exclude(names__lt='Sakura')]),
-            dict([(3, [u'Kakashi', u'Naruto', u'Sasuke']),
-                  (4, [u'Kakashi', u'Naruto', u'Sasuke', u'Sakura']), ]))
+            dict([(3, ['Kakashi', 'Naruto', 'Sasuke']),
+                  (4, ['Kakashi', 'Naruto', 'Sasuke', 'Sakura']), ]))
 
     def test_chained_filter(self):
         self.assertEquals(
@@ -228,7 +229,7 @@ class IterableFieldsTest(TestCase):
         DictModel(dictfield=dict(a=1, b='55', foo=3.14),
                   auto_now={'a': None}).save()
         item = DictModel.objects.get()
-        self.assertEqual(item.dictfield, {u'a': 1, u'b': 55, u'foo': 3})
+        self.assertEqual(item.dictfield, {'a': 1, 'b': 55, 'foo': 3})
 
         dt = item.auto_now['a']
         self.assertNotEqual(dt, None)

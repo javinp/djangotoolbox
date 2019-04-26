@@ -16,10 +16,10 @@ def decimal_to_string(value, max_digits=16, decimal_places=0):
 
     # Handle sign separately.
     if value.is_signed():
-        sign = u'-'
+        sign = '-'
         value = abs(value)
     else:
-        sign = u''
+        sign = ''
 
     # Let Django quantize and cast to a string.
     value = format_number(value, max_digits, decimal_places)
@@ -29,5 +29,5 @@ def decimal_to_string(value, max_digits=16, decimal_places=0):
     if n < 0:
         n = len(value)
     if n < max_digits - decimal_places:
-        value = u'0' * (max_digits - decimal_places - n) + value
+        value = '0' * (max_digits - decimal_places - n) + value
     return sign + value

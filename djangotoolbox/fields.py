@@ -1,5 +1,8 @@
 # All fields except for BlobField written by Jonas Haag <jonas@lophus.org>
 
+from future.utils import with_metaclass
+from past.builtins import basestring
+
 from django.core.exceptions import ValidationError
 from django.utils.importlib import import_module
 from django.db import models
@@ -225,7 +228,7 @@ class DictField(AbstractIterableField):
 
     def _map(self, function, iterable, *args, **kwargs):
         return self._type((key, function(value, *args, **kwargs))
-                          for key, value in iterable.iteritems())
+                          for key, value in iterable.items())
 
     def validate(self, values, model_instance):
         if not isinstance(values, dict):
@@ -233,7 +236,7 @@ class DictField(AbstractIterableField):
                                   type(values))
 
 
-class EmbeddedModelField(models.Field):
+class EmbeddedModelField(with_metaclass(models.SubfieldBase, models.Field)):
     """
     Field that allows you to embed a model instance.
 
@@ -245,7 +248,6 @@ class EmbeddedModelField(models.Field):
           the embedded instance (not just pre_save, get_db_prep_* and
           to_python).
     """
-    __metaclass__ = models.SubfieldBase
 
     def __init__(self, embedded_model=None, *args, **kwargs):
         self.embedded_model = embedded_model
@@ -254,7 +256,6 @@ class EmbeddedModelField(models.Field):
 
     def get_internal_type(self):
         return 'EmbeddedModelField'
-
 
     def _set_model(self, model):
         """
