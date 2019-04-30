@@ -1,3 +1,6 @@
+from builtins import object
+
+
 def make_tls_property(default=None):
     """
     Creates a class-wide instance property with a thread-specific

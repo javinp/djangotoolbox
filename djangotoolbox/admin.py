@@ -1,3 +1,4 @@
+from builtins import object
 from django import forms
 from django.contrib import admin
 from django.contrib.admin.sites import NotRegistered
@@ -7,7 +8,7 @@ from django.contrib.auth.models import User, Group
 
 class UserForm(forms.ModelForm):
 
-    class Meta:
+    class Meta(object):
         model = User
         fields = ('username', 'email', 'first_name', 'last_name', 'is_active',
                   'is_staff', 'is_superuser')

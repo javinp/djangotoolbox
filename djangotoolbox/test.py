@@ -1,3 +1,5 @@
+from __future__ import print_function
+from builtins import str
 from django.test import TestCase
 from django.utils.unittest import TextTestResult, TextTestRunner
 

@@ -1,5 +1,7 @@
 # All fields except for BlobField written by Jonas Haag <jonas@lophus.org>
 
+from builtins import str
+from builtins import object
 from future.utils import with_metaclass
 from past.builtins import basestring
 
@@ -228,7 +230,7 @@ class DictField(AbstractIterableField):
 
     def _map(self, function, iterable, *args, **kwargs):
         return self._type((key, function(value, *args, **kwargs))
-                          for key, value in iterable.items())
+                          for key, value in list(iterable.items()))
 
     def validate(self, values, model_instance):
         if not isinstance(values, dict):

@@ -1,3 +1,5 @@
+from io import open
+
 from setuptools import setup, find_packages
 
 
@@ -9,16 +11,16 @@ except:
     pass
 
 setup(name='djangotoolbox',
-    version='1.8.1',
-    description=DESCRIPTION,
-    long_description=LONG_DESCRIPTION,
-    author='Waldemar Kornewald',
-    author_email='wkornewald@gmail.com',
-    url='https://github.com/django-nonrel/djangotoolbox',
-    packages=find_packages(),
-    license='3-clause BSD',
-    zip_safe=False,
-    classifiers=[
+      version='1.8.1',
+      description=DESCRIPTION,
+      long_description=LONG_DESCRIPTION,
+      author='Waldemar Kornewald',
+      author_email='wkornewald@gmail.com',
+      url='https://github.com/django-nonrel/djangotoolbox',
+      packages=find_packages(),
+      license='3-clause BSD',
+      zip_safe=False,
+      classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Framework :: Django',
@@ -30,7 +32,8 @@ setup(name='djangotoolbox',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.7.3',
         'Topic :: Database',
         'Topic :: Software Development :: Libraries :: Python Modules',
-    ],
+      ],
 )

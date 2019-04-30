@@ -1,3 +1,4 @@
+from builtins import object
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.utils.cache import patch_cache_control
